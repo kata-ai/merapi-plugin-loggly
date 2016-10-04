@@ -27,7 +27,7 @@ describe("merapi-plugin-loggly unit test", function () {
                     api: {}
                 },
 
-                logger: {
+                logging: {
                     loggly: {
                         subdomain: "yesbossnow",
                         token: "95c6c1a1-ddb0-479b-bfc7-f1a0b168989c",
@@ -40,7 +40,7 @@ describe("merapi-plugin-loggly unit test", function () {
 
         container.registerPlugin("loggly@yesboss", require("../index.js")(container));
         container.register("mainComponent", class MainComponent extends Component {
-            constructor(logger) {
+            constructor(logger, config) {
                 super();
                 this.logger = logger;
             }
@@ -69,7 +69,17 @@ describe("merapi-plugin-loggly unit test", function () {
         done;
     }));
 
+    it("should have correct loggly config", async(function* (done) {
+        let expected = {
+            subdomain: "yesbossnow",
+            token: "95c6c1a1-ddb0-479b-bfc7-f1a0b168989c",
+            json: true
+        };
 
-    sleep(3000);
+        let config = yield container.resolve("config");
+        let logglyConfig = config.default("logging.loggly", {});
+        expect(JSON.stringify(logglyConfig)).to.equal(JSON.stringify(expected));
+        done;
+    }));
 
 });
