@@ -1,12 +1,12 @@
 "use strict";
 
-const LogglyManager = require("./loggly_manager");
+const LogglyManager = require("./lib/loggly_manager");
 
 module.exports = function () {
     return {
         dependencies: [],
 
-        *onBeforeComponentsRegister(container) {
+        *onAfterComponentsRegister(container) {
             container.register("logglyManager", LogglyManager);
             container.register("logger", require("./lib/logger"));
         }
