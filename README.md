@@ -15,7 +15,7 @@ npm install @yesboss/merapi-plugin-loggly --save
     "plugins": [
         "loggly@yesboss",
         .....
-    ]
+    ],
     "logging": {
         "loggly": {
             "subdomain": "yesbossnow",
