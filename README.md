@@ -1,4 +1,4 @@
-# Merapi-Plugin-Loggly
+# merapi-plugin-loggly
 Pluginable loggly for Merapi
 
 ## Installation
