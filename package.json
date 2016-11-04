@@ -1,6 +1,6 @@
 {
   "name": "@yesboss/merapi-plugin-loggly",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Merapi plugin for loggly (logger)",
   "main": "index.js",
   "scripts": {
