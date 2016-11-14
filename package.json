@@ -1,6 +1,6 @@
 {
   "name": "@yesboss/merapi-plugin-loggly",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Merapi plugin for loggly (logger)",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git+https://bitbucket.org/yesboss/merapi-plugin-loggy.git"
+    "url": "git+https://bitbucket.org/yesboss/merapi-plugin-loggly.git"
   },
   "dependencies": {
     "@yesboss/merapi": "^0.10.6",
