@@ -8,7 +8,7 @@ module.exports = function () {
 
         *onAfterComponentsRegister(container) {
             container.register("logglyManager", LogglyManager);
-            container.register("logger", require("./lib/logger"));
+            container.injector.register("logger", require("./lib/logger"));
         }
     };
 };
