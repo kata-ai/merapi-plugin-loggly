@@ -14,6 +14,8 @@
   },
   "dependencies": {
     "@yesboss/merapi": "^0.10.6",
+    "bunyan": "^1.8.10",
+    "bunyan-loggly": "^1.2.0",
     "loggly": "^1.1.1",
     "winston": "^2.2.0",
     "winston-loggly-bulk": "^1.3.3"
