@@ -47,7 +47,7 @@ Initial Authors:
 
 * Roni Kurniawan
 * Hisma Mulya
-* Andida Syahenda
+* Andida Syahendar
 
 Authors:
 
