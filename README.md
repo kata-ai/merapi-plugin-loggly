@@ -44,9 +44,11 @@ module.exports = class MainComponent extends Component {
 
 ## Contributors
 Initial Authors:
+
 * Roni Kurniawan
 * Hisma Mulya
 * Andida Syahenda
 
 Authors:
+
 * Ikmal Syifai
