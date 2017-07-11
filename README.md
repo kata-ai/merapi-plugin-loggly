@@ -1,70 +1,52 @@
-# merapi-plugin-loggly
-Pluginable loggly for Merapi
-
+# Merapi Plugin Loggly
 ## Installation
 Install using npm:
 ```
-npm install @yesboss/merapi-plugin-loggly --save
+npm install merapi-plugin-loggly --save
 ```
 
 ## Configuration
 
 ```
-{
-    ....
-    "plugins": [
-        "loggly@yesboss",
-        .....
-    ],
-    "logging": {
-        "loggly": {
-            "subdomain": "yesbossnow",
-            "token": "95c6c1a1-ddb0-479b-bfc7-f1a0b168989c",
-            "json": true,
-            "stack-name": "stack-name"
-        }
-    }    
-}
+plugins:
+    - loggly
+    - service
+
+merapi:
+    logging:
+        level: info
+
+        loggly:
+            level: debug
+            buffer:
+                length: 50
+                timeout: 5000
+            config:
+                subdomain: yesbossnow
+                token: de7bf9fe-af47-413d-a002-a4498280b601
 ```
 ## Usage 
-### Manual
-```
-let logger = yield container.resolve("logger");
-
-logger.log('silly', "a silly info");
-logger.log('debug', "a debug level info");
-logger.log('verbose', "a verbose level info");
-logger.log('info', "an info");
-logger.log('warn', "a warn level info");
-logger.log('error', "an error level info");
-
-logger.info("an usefull info");
-logger.warn("a warn level info");
-logger.error("an error info");
-```
-
-### Automatic injection
 ```
 "use strict";
-const Component = require("@yesboss/merapi/component");
+const { Component } = require("merapi");
 
-module.exports = class FirstComponent extends Component {
+module.exports = class MainComponent extends Component {
     constructor(logger) {
         super();
-        this._counter = 0;
         this.logger = logger;
     }
-    getCounter() {
-        this.logger.info("execute getCounter");
-        return this._counter;
+
+    *initialize() {
+        this.logger.info("Starting app...");
     }
 };
 ```
 
-## Copyright
-Copyright (c) 2015-2016 YesBoss Group. All rights reserved.
-We plan to open source this later in 2016, however please do not share
-this before we officially release this as open source.
-
 ## Contributors
-Initial Author: Roni Kurniawan
+Initial Authors:
+* Roni Kurniawan
+* Hisma Mulya
+* Andida Syahenda
+
+Authors:
+* Ikmal Syifai

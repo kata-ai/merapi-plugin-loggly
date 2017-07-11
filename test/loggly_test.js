@@ -2,10 +2,8 @@
 
 const chai = require("chai");
 const expect = chai.expect;
-const merapi = require("@yesboss/merapi");
-const Component = require("@yesboss/merapi/component");
-const async = require("@yesboss/merapi/async");
-const sleep = require("sleep-promise");
+const merapi = require("merapi");
+const { Component, async } = require("merapi");
 
 /* eslint-env mocha */
 
@@ -27,44 +25,38 @@ describe("merapi-plugin-loggly unit test", function () {
                     api: {}
                 },
 
-                logging: {
-                    loggly: {
-                        subdomain: "yesbossnow",
-                        token: "95c6c1a1-ddb0-479b-bfc7-f1a0b168989c",
-                        json: true
+                merapi: {
+                    logging: {
+                        level: "info",
+                        loggly: {
+                            level: "debug",
+                            buffer: {
+                                length: 50,
+                                timeout: 5000
+                            },
+                            config: {
+                                subdomain: "yesbossnow",
+                                token: "de7bf9fe-af47-413d-a002-a4498280b601"
+                            }
+                        }
                     }
                 },
+
                 package: require("../package.json")
             }
         });
 
         container.registerPlugin("loggly@yesboss", require("../index.js")(container));
         container.register("mainComponent", class MainComponent extends Component {
-            constructor(logger, config) {
-                super();
-                this.logger = logger;
-            }
-            start() {
-                //console.log("logger", this.logger);
-
-                this.logger.verbose("INFO TEST FROM TESTER");
-            }
+            constructor() { super(); }
+            start() { }
         });
         container.initialize();
         container.start();
     });
 
-    after(function () {
-        sleep(3000);
-    });
-
     it("should get logglyManager initialized", async(function* (done) {
-        sleep(3000);
         LogglyManager = yield container.resolve("logglyManager");
-        let logger = yield container.resolve("logger");
-        sleep(3000);
-        //console.log("logger", logger);
-        logger.verbose("verbose TEST FROM TESTER");
         expect(LogglyManager).to.not.be.null;
         done;
     }));
@@ -72,13 +64,12 @@ describe("merapi-plugin-loggly unit test", function () {
     it("should have correct loggly config", async(function* (done) {
         let expected = {
             subdomain: "yesbossnow",
-            token: "95c6c1a1-ddb0-479b-bfc7-f1a0b168989c",
-            json: true
+            token: "de7bf9fe-af47-413d-a002-a4498280b601"
         };
 
         let config = yield container.resolve("config");
-        let logglyConfig = config.default("logging.loggly", {});
-        expect(JSON.stringify(logglyConfig)).to.equal(JSON.stringify(expected));
+        let logglyConfig = config.default("merapi.logging.loggly.config", {});
+        expect(logglyConfig).to.deep.include(expected);
         done;
     }));
 
