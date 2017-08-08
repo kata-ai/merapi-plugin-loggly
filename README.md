@@ -24,6 +24,9 @@ merapi:
             config:
                 subdomain: yesbossnow
                 token: de7bf9fe-af47-413d-a002-a4498280b601
+            customTags:
+                - diaenne-platform
+                - experiment
 ```
 ## Usage 
 ```
