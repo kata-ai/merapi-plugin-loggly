@@ -27,6 +27,13 @@ merapi:
             customTags:
                 - diaenne-platform
                 - experiment
+            consoleOnly: true
+            os:
+                interval: 5000
+                cpu: false
+                mem: true
+                loadavg: true
+                uptime: false
 ```
 ## Usage 
 ```
